@@ -11,8 +11,7 @@
     dlPng: $('dlPng'), dlSvg: $('dlSvg'), print: $('print'), nfc: $('nfc')
   };
 
-  var PLACEHOLDER = 'https://example.com';
-  var current = { url: '', matrix: null };
+    var current = { url: '', matrix: null };
 
   function setMsg(el, text, kind) { el.textContent = text || ''; el.className = 'msg' + (kind ? ' ' + kind : ''); }
 
@@ -78,19 +77,20 @@
 
   function update() {
     var res = checkUrl(els.link.value);
-    var shownUrl = res.ok ? res.url : PLACEHOLDER;
+    var shownUrl = res.ok ? res.url : '';
 
-    if (!els.link.value.trim()) setMsg(els.linkMsg, 'Sample QR preview. Enter your review link to generate your QR code.', 'warn');
+    if (!els.link.value.trim()) setMsg(els.linkMsg, 'Enter your review link to generate the QR code.', 'warn');
     else if (!res.ok) setMsg(els.linkMsg, res.msg, 'err');
     else if (res.warn) setMsg(els.linkMsg, res.warn, 'warn');
     else setMsg(els.linkMsg, 'Link looks valid.', 'ok');
 
     current.url = res.ok ? res.url : '';
-    current.matrix = buildMatrix(shownUrl);
+    current.matrix = res.ok ? buildMatrix(shownUrl) : null;
 
-    paintInto(els.qrSvg, current.matrix, els.dark.value);
-    paintInto(els.qrFront, current.matrix, els.dark.value);
-    paintInto(els.qrBig, current.matrix, els.dark.value);
+    [els.qrSvg, els.qrFront, els.qrBig].forEach(function (target) {
+      if (current.matrix) paintInto(target, current.matrix, els.dark.value);
+      else target.innerHTML = '';
+    });
 
     els.pName.textContent = els.name.value.trim() || 'Your Business';
     els.pLine.textContent = els.line.value.trim();
