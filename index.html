@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="hi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Review Card Maker — NFC + QR</title>
+  <meta name="description" content="Google review link se QR code, print-ready NFC card aur NFC tag writer." />
+  <link rel="stylesheet" href="assets/style.css" />
+</head>
+<body>
+  <header class="top no-print">
+    <div class="wrap">
+      <h1>⭐ Review Card Maker</h1>
+      <p>Google review link daalo → QR code, print-ready card aur NFC tag, sab ek jagah.</p>
+    </div>
+  </header>
+
+  <main class="wrap grid">
+    <section class="panel no-print" aria-label="Settings">
+      <h2>1. Details bharo</h2>
+
+      <label for="name">Business ka naam</label>
+      <input id="name" type="text" value="Aapka Business" maxlength="40" />
+
+      <label for="link">Google review link</label>
+      <input id="link" type="url" placeholder="https://g.page/r/XXXXXXX/review" />
+      <p class="hint">Google Business Profile → <b>Ask for reviews</b> se link copy karo.</p>
+      <p id="linkMsg" class="msg" role="status"></p>
+
+      <label for="line">Card par line</label>
+      <input id="line" type="text" value="Hamari service pasand aayi? Review dijiye!" maxlength="60" />
+
+      <div class="row">
+        <div>
+          <label for="color">Card ka rang</label>
+          <input id="color" type="color" value="#0f766e" />
+        </div>
+        <div>
+          <label for="dark">QR ka rang</label>
+          <input id="dark" type="color" value="#111111" />
+        </div>
+      </div>
+
+      <h2>2. Download / Print</h2>
+      <div class="btns">
+        <button id="dlPng" class="btn">QR PNG</button>
+        <button id="dlSvg" class="btn">QR SVG</button>
+        <button id="print" class="btn primary">Card print / PDF</button>
+      </div>
+      <p class="hint">Print dialog me <b>Save as PDF</b> chuno, aur print shop ko wahi PDF do. Scale <b>100%</b> rakho, tabhi card ka size sahi aayega (85.6 × 54 mm).</p>
+
+      <h2>3. NFC tag me link likho</h2>
+      <button id="nfc" class="btn">NFC tag me likho</button>
+      <p id="nfcMsg" class="msg" role="status"></p>
+      <p class="hint">Sirf <b>Chrome (Android)</b> me chalta hai, NFC ON ho. iPhone ya computer par <b>NFC Tools</b> app use karo (README dekho).</p>
+    </section>
+
+    <section class="preview" aria-label="Preview">
+      <h2 class="no-print">Preview</h2>
+
+      <div class="cards">
+        <div>
+          <p class="cap no-print">Aage ka hissa</p>
+          <article class="card front" id="front">
+            <div class="stars" aria-hidden="true">★ ★ ★ ★ ★</div>
+            <h3 id="pName">Aapka Business</h3>
+            <p id="pLine">Hamari service pasand aayi? Review dijiye!</p>
+            <div class="tap">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 8.5a6.5 6.5 0 0 1 0 7"/><path d="M10 6a10 10 0 0 1 0 12"/><path d="M14 3.5a13.5 13.5 0 0 1 0 17"/></svg>
+              <span>Phone yahan tap karo</span>
+            </div>
+          </article>
+        </div>
+
+        <div>
+          <p class="cap no-print">Peeche ka hissa</p>
+          <article class="card back" id="back">
+            <div class="qrbox"><svg id="qrSvg" viewBox="0 0 100 100" role="img" aria-label="Review QR code"></svg></div>
+            <div class="backtext">
+              <b>Ya QR scan karo</b>
+              <span>Phone ka camera kholo aur is code par rakho.</span>
+              <small id="pLink">—</small>
+            </div>
+          </article>
+        </div>
+      </div>
+
+      <div class="no-print">
+        <p class="cap">QR code (download wala)</p>
+        <div class="bigqr"><svg id="qrBig" viewBox="0 0 100 100" aria-label="QR code"></svg></div>
+        <p class="hint">Phone se ek baar scan karke test zaroor karo.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="wrap foot no-print">
+    <p>Ye tool aapke browser me hi chalta hai. Aapki link kisi server par nahi jaati.</p>
+  </footer>
+
+  <script src="assets/qrcode.js"></script>
+  <script src="assets/app.js"></script>
+</body>
+</html>
