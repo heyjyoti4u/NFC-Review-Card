@@ -19,7 +19,7 @@ Go to `business.google.com` → select your profile → **Ask for reviews** → 
 Enter the business name, review link, and colors. Then:
 - **QR PNG / QR SVG**: download the file.
 - **Card print / PDF**: print dialog me *Save as PDF*, scale **100%**. Vertical card ka size 54 × 85.6 mm rakha gaya hai; PDF give the PDF to your print shop and confirm the final size and bleed.
-- **NFC tag me likho**: requires Chrome on Android with NFC enabled. Click the button, then hold the card against the back of your phone.
+- **Write to NFC tag**: requires Chrome on Android with NFC enabled. Click the button, then hold the card against the back of your phone.
 
 ## 3. Other ways to write an NFC tag
 If Web NFC is unavailable (for example, on iPhone or desktop), use the **NFC Tools** app:
