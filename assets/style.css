@@ -45,7 +45,7 @@ input[type=color] { width: 100%; height: 42px; border: 1px solid var(--line); bo
 .front::before, .front::after { content: ""; position: absolute; pointer-events: none; border: 1px solid rgba(255,255,255,.075); border-radius: 50%; }
 .front::before { width: 78mm; height: 78mm; top: -42mm; right: -35mm; }
 .front::after { width: 58mm; height: 58mm; bottom: -38mm; left: -31mm; }
-.front-brand, .front-message, .front-actions, .logo-placeholder, .back-brand, .back-title, .qrbox, .back-scan, #pLink { position: relative; z-index: 1; }
+.front-brand, .front-message, .front-actions, .back-brand, .back-title, .qrbox, .back-scan, #pLink { position: relative; z-index: 1; }
 .front-brand { display: flex; flex-direction: column; align-items: center; line-height: 1.05; }
 .google-mark { font-family: Arial, sans-serif; font-weight: 800; font-size: 14.5mm; line-height: .98; letter-spacing: -1.1mm; color: #4285f4; background: conic-gradient(from -35deg, #4285f4 0 27%, #34a853 27% 48%, #fbbc05 48% 67%, #ea4335 67% 86%, #4285f4 86% 100%); color: transparent; background-clip: text; -webkit-background-clip: text; }
 .review-label { margin-top: 1mm; font-size: 3.5mm; line-height: 1.04; font-style: italic; }
@@ -63,7 +63,6 @@ input[type=color] { width: 100%; height: 42px; border: 1px solid var(--line); bo
 .action-copy { display: flex; flex-direction: column; align-items: flex-start; margin-left: .5mm; font-size: 2.8mm; line-height: 1.1; }
 .action-copy b { font-size: 3.2mm; }
 .action-copy span { opacity: .7; font-size: 2.4mm; text-align: center; width: 100%; margin: .6mm 0; }
-.logo-placeholder { width: 100%; border: .3mm solid rgba(255,255,255,.92); padding: 1.4mm 1mm; font-size: 2.4mm; line-height: 1; letter-spacing: .15mm; font-weight: 650; }
 .back { background: #050505; color: #fff; border: .3mm solid #292929; display: flex; flex-direction: column; align-items: center; text-align: center; padding: 4mm 4mm 3mm; gap: 1.5mm; }
 .back-brand { display: flex; flex-direction: column; align-items: center; line-height: 1.02; }
 .back .google-mark { font-size: 11mm; }
