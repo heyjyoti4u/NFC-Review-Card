@@ -77,15 +77,15 @@
 
   function update() {
     var res = checkUrl(els.link.value);
-    var shownUrl = res.ok ? res.url : '';
+    var shownUrl = res.ok ? res.url : (els.link.value.trim() ? '' : 'https://example.com');
 
-    if (!els.link.value.trim()) setMsg(els.linkMsg, 'Enter your review link to generate the QR code.', 'warn');
+    if (!els.link.value.trim()) setMsg(els.linkMsg, 'Sample QR preview. Enter your review link to generate your QR code.', 'warn');
     else if (!res.ok) setMsg(els.linkMsg, res.msg, 'err');
     else if (res.warn) setMsg(els.linkMsg, res.warn, 'warn');
     else setMsg(els.linkMsg, 'Link looks valid.', 'ok');
 
     current.url = res.ok ? res.url : '';
-    current.matrix = res.ok ? buildMatrix(shownUrl) : null;
+    current.matrix = shownUrl ? buildMatrix(shownUrl) : null;
 
     [els.qrSvg, els.qrFront, els.qrBig].forEach(function (target) {
       if (current.matrix) paintInto(target, current.matrix, els.dark.value);
