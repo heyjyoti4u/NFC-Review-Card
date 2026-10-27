@@ -94,7 +94,7 @@
 
     els.pName.textContent = els.name.value.trim() || 'Your Business';
     els.pLine.textContent = els.line.value.trim();
-    els.pLink.textContent = shortLink(shownUrl);
+    els.pLink.textContent = res.ok ? shortLink(shownUrl) : '';
     document.documentElement.style.setProperty('--card', els.color.value);
 
     var ready = res.ok;
