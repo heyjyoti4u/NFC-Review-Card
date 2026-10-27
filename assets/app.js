@@ -1,4 +1,4 @@
-/* Review Card Maker: QR + card preview + NFC write. Koi build step nahi. */
+/* Review Card Maker: QR + card preview + NFC write. No build step required. */
 (function () {
   'use strict';
 
@@ -11,12 +11,12 @@
     dlPng: $('dlPng'), dlSvg: $('dlSvg'), print: $('print'), nfc: $('nfc')
   };
 
-  var PLACEHOLDER = 'https://g.page/r/XXXXXXX/review';
+  var PLACEHOLDER = 'https://example.com';
   var current = { url: '', matrix: null };
 
   function setMsg(el, text, kind) { el.textContent = text || ''; el.className = 'msg' + (kind ? ' ' + kind : ''); }
 
-  // Link sahi hai ya nahi
+  // Validate the URL
   function checkUrl(value) {
     var v = value.trim();
     if (!v) return { ok: false, url: '', msg: '' };
@@ -26,13 +26,13 @@
       if (u.protocol !== 'https:' && u.protocol !== 'http:') throw new Error('protocol');
       var host = u.hostname.toLowerCase();
       var looksGoogle = /(^|\.)(g\.page|google\.com|goo\.gl|maps\.app\.goo\.gl)$/.test(host);
-      return { ok: true, url: u.toString(), warn: looksGoogle ? '' : 'Ye Google ki link nahi lag rahi. Ek baar check kar lo.' };
+      return { ok: true, url: u.toString(), warn: looksGoogle ? '' : 'This does not look like a Google review link. Please double-check it.' };
     } catch (e) {
-      return { ok: false, url: '', msg: 'Link galat hai. Poori link paste karo (https:// se shuru).' };
+      return { ok: false, url: '', msg: 'Invalid link. Please paste the full URL, starting with https://.' };
     }
   }
 
-  // QR matrix banao (error correction M: print/scratch ke liye achha balance)
+  // Build the QR matrix (M error correction level)
   function buildMatrix(text) {
     var qr = qrcode(0, 'M');
     qr.addData(text);
@@ -46,7 +46,7 @@
     return rows;
   }
 
-  var QUIET = 4; // QR ke charo taraf khali jagah (modules me), scan ke liye zaroori
+  var QUIET = 4; // Required quiet zone around the QR code, measured in modules
 
   function svgMarkup(matrix, dark, withBg) {
     var n = matrix.length, size = n + QUIET * 2, d = '';
@@ -80,10 +80,10 @@
     var res = checkUrl(els.link.value);
     var shownUrl = res.ok ? res.url : PLACEHOLDER;
 
-    if (!els.link.value.trim()) setMsg(els.linkMsg, 'Abhi sample QR dikh raha hai. Apni link daalo.', 'warn');
+    if (!els.link.value.trim()) setMsg(els.linkMsg, 'Sample QR preview. Enter your review link to generate your QR code.', 'warn');
     else if (!res.ok) setMsg(els.linkMsg, res.msg, 'err');
     else if (res.warn) setMsg(els.linkMsg, res.warn, 'warn');
-    else setMsg(els.linkMsg, 'Link theek hai ✓', 'ok');
+    else setMsg(els.linkMsg, 'Link looks valid.', 'ok');
 
     current.url = res.ok ? res.url : '';
     current.matrix = buildMatrix(shownUrl);
@@ -92,7 +92,7 @@
     paintInto(els.qrFront, current.matrix, els.dark.value);
     paintInto(els.qrBig, current.matrix, els.dark.value);
 
-    els.pName.textContent = els.name.value.trim() || 'Aapka Business';
+    els.pName.textContent = els.name.value.trim() || 'Your Business';
     els.pLine.textContent = els.line.value.trim();
     els.pLink.textContent = shortLink(shownUrl);
     document.documentElement.style.setProperty('--card', els.color.value);
@@ -118,7 +118,7 @@
   els.dlPng.addEventListener('click', function () {
     if (!current.url) return;
     var n = current.matrix.length, total = n + QUIET * 2;
-    var scale = Math.ceil(1200 / total);             // ~1200px ya usse bada
+    var scale = Math.ceil(1200 / total);             // Approximately 1200px or larger
     var canvas = document.createElement('canvas');
     canvas.width = canvas.height = total * scale;
     var ctx = canvas.getContext('2d');
@@ -132,23 +132,23 @@
 
   els.print.addEventListener('click', function () { window.print(); });
 
-  // ---- NFC write (Web NFC: sirf Chrome Android, HTTPS) ----
+  // ---- NFC writing (Web NFC: Chrome on Android over HTTPS) ----
   els.nfc.addEventListener('click', async function () {
     if (!current.url) return;
     if (!('NDEFReader' in window)) {
-      setMsg(els.nfcMsg, 'Is browser me Web NFC nahi hai. Android Chrome use karo, ya NFC Tools app (README dekho).', 'err');
+      setMsg(els.nfcMsg, 'Web NFC is not available in this browser. Use Chrome on Android or the NFC Tools app (see README).', 'err');
       return;
     }
     try {
       els.nfc.disabled = true;
-      setMsg(els.nfcMsg, 'Ab NFC card ko phone ke peeche touch karo…', 'warn');
+      setMsg(els.nfcMsg, 'Hold the NFC card against the back of your phone…', 'warn');
       var ndef = new NDEFReader();
       await ndef.write({ records: [{ recordType: 'url', data: current.url }] });
-      setMsg(els.nfcMsg, 'Ho gaya ✓ Ab card ko phone se tap karke test karo.', 'ok');
+      setMsg(els.nfcMsg, 'Success! Tap your phone against the card to test it.', 'ok');
     } catch (err) {
-      var m = err && err.name === 'NotAllowedError' ? 'NFC permission nahi mili. Phone ki settings me NFC ON karo aur permission allow karo.'
-            : err && err.name === 'NotSupportedError' ? 'Is phone me NFC nahi hai ya band hai.'
-            : 'Likh nahi paaye: ' + (err && err.message ? err.message : 'unknown error') + '. Card ko thoda hilake dobara try karo.';
+      var m = err && err.name === 'NotAllowedError' ? 'NFC permission denied. Enable NFC in your phone settings and allow the permission.'
+            : err && err.name === 'NotSupportedError' ? 'NFC is unavailable or turned off on this phone.'
+            : 'Could not write to the tag: ' + (err && err.message ? err.message : 'unknown error') + '. Reposition the card and try again.';
       setMsg(els.nfcMsg, m, 'err');
     } finally {
       els.nfc.disabled = !current.url;
@@ -159,7 +159,7 @@
     [els.name, els.link, els.line, els.color, els.dark].forEach(function (el) { el.addEventListener(ev, update); });
   });
 
-  // ?link=...&name=... se pehle se bhari hui link khol sakte ho
+  // Pre-fill the form with ?link=...&name=...
   var q = new URLSearchParams(location.search);
   if (q.get('link')) els.link.value = q.get('link');
   if (q.get('name')) els.name.value = q.get('name');
