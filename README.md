@@ -1,6 +1,6 @@
 # Review Card Maker (NFC + QR)
 
-Google review link se **QR code**, **print-ready NFC card** (85.6 × 54 mm) aur **NFC tag writer**. Sab browser me chalta hai, koi server nahi.
+Google review link se **QR code**, **print-ready vertical NFC card** (54 × 85.6 mm) aur **NFC tag writer**. Sab browser me chalta hai, koi server nahi.
 
 ## Kya hai is repo me
 
@@ -18,7 +18,7 @@ Google review link se **QR code**, **print-ready NFC card** (85.6 × 54 mm) aur 
 
 Tool me business ka naam, link, rang bharo. Phir:
 - **QR PNG / QR SVG**: download karo.
-- **Card print / PDF**: print dialog me *Save as PDF*, scale **100%**. PDF print shop ko do.
+- **Card print / PDF**: print dialog me *Save as PDF*, scale **100%**. Vertical card ka size 54 × 85.6 mm rakha gaya hai; PDF print shop ko do aur final size/bleed confirm kar lo.
 - **NFC tag me likho**: sirf Chrome (Android) + NFC ON. Button dabao, phir card phone ke peeche touch karo.
 
 ## 3. NFC me link likhne ke baaki tareeke
