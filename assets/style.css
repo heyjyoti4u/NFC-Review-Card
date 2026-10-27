@@ -54,7 +54,7 @@ input[type=color] { width: 100%; height: 42px; border: 1px solid var(--line); bo
 .front-message { width: 100%; margin-top: 6mm; }
 .front h3 { margin: 0 0 1.6mm; font-size: 4.4mm; line-height: 1.1; overflow-wrap: anywhere; }
 .front p { margin: 0 auto; font-size: 2.7mm; line-height: 1.25; opacity: .9; max-width: 45mm; }
-.front-actions { display: flex; align-items: center; justify-content: center; width: 100%; gap: 2mm; margin-top: auto; margin-bottom: 1mm; padding: 0; border: 0; border-radius: 0; box-shadow: none; background: transparent; }
+.front-actions { display: flex; align-items: center; justify-content: center; width: 100%; gap: 2mm; margin-top: auto; margin-bottom: 6mm; padding: 0; border: 0; border-radius: 0; box-shadow: none; background: transparent; }
 .tap-visual { width: 11mm; height: 10mm; }
 .tap-visual svg { width: 100%; height: 100%; }
 .action-separator { height: 10mm; border-left: .4mm solid rgba(255,255,255,.9); }
