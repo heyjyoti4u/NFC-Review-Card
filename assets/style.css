@@ -39,7 +39,7 @@ input[type=color] { width: 100%; height: 42px; border: 1px solid var(--line); bo
   box-shadow: 0 16px 38px rgba(0,0,0,.2); print-color-adjust: exact; -webkit-print-color-adjust: exact;
 }
 .front {
-  color: #fff; padding: 5mm 4mm 4mm; display: flex; flex-direction: column; align-items: center; justify-content: space-between;
+  color: #fff; padding: 5mm 4mm 5mm; display: flex; flex-direction: column; align-items: center; justify-content: flex-start;
   text-align: center; background: linear-gradient(155deg, var(--card), color-mix(in srgb, var(--card) 80%, #353535));
 }
 .front::before, .front::after { content: ""; position: absolute; pointer-events: none; border: 1px solid rgba(255,255,255,.075); border-radius: 50%; }
@@ -51,10 +51,10 @@ input[type=color] { width: 100%; height: 42px; border: 1px solid var(--line); bo
 .review-label { margin-top: 1mm; font-size: 3.5mm; line-height: 1.04; font-style: italic; }
 .review-label strong { font-size: 4.5mm; font-weight: 650; }
 .stars { margin-top: 1.6mm; color: #fbbc04; letter-spacing: .8mm; font-size: 4.2mm; line-height: 1.1; }
-.front-message { width: 100%; margin-top: 2mm; }
+.front-message { width: 100%; margin-top: 6mm; }
 .front h3 { margin: 0 0 1.6mm; font-size: 4.4mm; line-height: 1.1; overflow-wrap: anywhere; }
 .front p { margin: 0 auto; font-size: 2.7mm; line-height: 1.25; opacity: .9; max-width: 45mm; }
-.front-actions { display: flex; align-items: center; justify-content: center; width: 100%; gap: 2mm; margin-top: 1mm; }
+.front-actions { display: flex; align-items: center; justify-content: center; width: 100%; gap: 2mm; margin-top: auto; margin-bottom: 1mm; }
 .tap-visual { width: 11mm; height: 10mm; }
 .tap-visual svg { width: 100%; height: 100%; }
 .action-separator { height: 10mm; border-left: .4mm solid rgba(255,255,255,.9); }
@@ -74,7 +74,6 @@ input[type=color] { width: 100%; height: 42px; border: 1px solid var(--line); bo
 .qrbox svg { width: 100%; height: 100%; display: block; }
 .back-scan { font-size: 2.6mm; line-height: 1.1; }
 .back small { font-size: 1.8mm; color: #aaa; overflow-wrap: anywhere; line-height: 1.2; max-width: 100%; }
-.back-logo { margin-top: auto; }
 .bigqr { width: 220px; height: 220px; background: #fff; border: 1px solid var(--line); border-radius: 14px; padding: 10px; }
 .bigqr svg { width: 100%; height: 100%; display: block; }
 .qr-download-preview { margin-top: 28px; }
