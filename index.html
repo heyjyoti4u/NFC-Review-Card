@@ -33,7 +33,7 @@
       <div class="row">
         <div>
           <label for="color">Card ka rang</label>
-          <input id="color" type="color" value="#0f766e" />
+          <input id="color" type="color" value="#050505" />
         </div>
         <div>
           <label for="dark">QR ka rang</label>
@@ -47,7 +47,7 @@
         <button id="dlSvg" class="btn">QR SVG</button>
         <button id="print" class="btn primary">Card print / PDF</button>
       </div>
-      <p class="hint">Print dialog me <b>Save as PDF</b> chuno, aur print shop ko wahi PDF do. Scale <b>100%</b> rakho, tabhi card ka size sahi aayega (85.6 × 54 mm).</p>
+      <p class="hint">Print dialog me <b>Save as PDF</b> chuno. Card ab vertical portrait layout mein hai; print shop se final size aur bleed confirm kar lena.</p>
 
       <h2><b class="n">3</b> NFC tag me link likho</h2>
       <button id="nfc" class="btn">NFC tag me likho</button>
@@ -57,38 +57,50 @@
 
     <section class="preview" aria-label="Preview">
       <h2 class="no-print">Preview</h2>
-
+      <p class="preview-note no-print">Vertical NFC review card · Front & back</p>
       <div class="cards">
-        <div>
+        <div class="card-wrap">
           <p class="cap no-print">Aage ka hissa</p>
           <article class="card front" id="front">
-            <i class="orb o1" aria-hidden="true"></i><i class="orb o2" aria-hidden="true"></i>
-            <div class="f-top">
+            <div class="front-brand">
+              <div class="google-mark" aria-label="Google">G</div>
+              <div class="review-label">review us<br><strong>on Google</strong></div>
               <div class="stars" aria-hidden="true">★★★★★</div>
-              <svg class="nfc-ico" viewBox="0 0 48 48" width="34" height="34" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" aria-hidden="true"><path d="M17 15a13 13 0 0 1 0 18"/><path d="M24 10a21 21 0 0 1 0 28"/><path d="M31 5a29 29 0 0 1 0 38"/></svg>
             </div>
-            <div class="f-mid">
+            <div class="front-message">
               <h3 id="pName">Aapka Business</h3>
               <p id="pLine">Hamari service pasand aayi? Review dijiye!</p>
             </div>
-            <div class="tap"><span class="dot"></span>Phone yahan tap karo</div>
+            <div class="front-actions">
+              <div class="tap-visual" aria-hidden="true">
+                <svg viewBox="0 0 52 44" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><rect x="19" y="8" width="14" height="27" rx="3" transform="rotate(12 19 8)"/><path d="M8 21a10 10 0 0 1 8-10M5 26a15 15 0 0 1 12-16M11 30a6 6 0 0 1 5-6"/></svg>
+              </div>
+              <div class="action-separator"></div>
+              <div class="scan-visual"><svg viewBox="0 0 54 54" aria-hidden="true"><rect x="2" y="2" width="50" height="50" fill="#fff"/><path d="M7 7h14v14H7zM11 11v6h6v-6zM33 7h14v14H33zM37 11v6h6v-6zM7 33h14v14H7zM11 37v6h6v-6zM27 7h4v4h-4zM25 15h6v4h-6zM27 25h5v5h-5zM36 27h5v5h-5zM45 25h4v7h-4zM25 35h4v4h-4zM31 40h5v6h-5zM39 37h10v4H39zM43 45h6v4h-6z" fill="#111"/></svg></div>
+              <div class="action-copy"><b>Tap</b><span>or</span><b>Scan</b></div>
+            </div>
+            <div class="logo-placeholder">YOUR LOGO HERE</div>
           </article>
         </div>
 
-        <div>
+        <div class="card-wrap">
           <p class="cap no-print">Peeche ka hissa</p>
           <article class="card back" id="back">
-            <div class="qrbox"><svg id="qrSvg" viewBox="0 0 100 100" role="img" aria-label="Review QR code"></svg></div>
-            <div class="backtext">
-              <b>Ya QR scan karo</b>
-              <span>Phone ka camera kholo aur is code par rakho.</span>
-              <small id="pLink">—</small>
+            <div class="back-brand">
+              <div class="google-mark" aria-label="Google">G</div>
+              <div class="review-label">review us<br><strong>on Google</strong></div>
+              <div class="stars" aria-hidden="true">★★★★★</div>
             </div>
+            <p class="back-title">We value your feedback</p>
+            <div class="qrbox"><svg id="qrSvg" viewBox="0 0 100 100" role="img" aria-label="Review QR code"></svg></div>
+            <b class="back-scan">Scan to leave a review</b>
+            <small id="pLink">Add your review link to generate QR</small>
+            <div class="logo-placeholder back-logo">YOUR LOGO HERE</div>
           </article>
         </div>
       </div>
 
-      <div class="no-print">
+      <div class="no-print qr-download-preview">
         <p class="cap">QR code (download wala)</p>
         <div class="bigqr"><svg id="qrBig" viewBox="0 0 100 100" aria-label="QR code"></svg></div>
         <p class="hint">Phone se ek baar scan karke test zaroor karo.</p>
