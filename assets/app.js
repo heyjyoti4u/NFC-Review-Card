@@ -7,7 +7,7 @@
     name: $('name'), link: $('link'), line: $('line'), color: $('color'), dark: $('dark'),
     linkMsg: $('linkMsg'), nfcMsg: $('nfcMsg'),
     pName: $('pName'), pLine: $('pLine'), pLink: $('pLink'),
-    qrSvg: $('qrSvg'), qrBig: $('qrBig'),
+    qrSvg: $('qrSvg'), qrFront: $('qrFront'), qrBig: $('qrBig'),
     dlPng: $('dlPng'), dlSvg: $('dlSvg'), print: $('print'), nfc: $('nfc')
   };
 
@@ -89,6 +89,7 @@
     current.matrix = buildMatrix(shownUrl);
 
     paintInto(els.qrSvg, current.matrix, els.dark.value);
+    paintInto(els.qrFront, current.matrix, els.dark.value);
     paintInto(els.qrBig, current.matrix, els.dark.value);
 
     els.pName.textContent = els.name.value.trim() || 'Aapka Business';
