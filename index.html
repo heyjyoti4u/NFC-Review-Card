@@ -10,14 +10,14 @@
 <body>
   <header class="top no-print">
     <div class="wrap">
-      <h1>⭐ Review Card Maker</h1>
+      <h1><span class="logo">★</span> Review Card Maker</h1>
       <p>Google review link daalo → QR code, print-ready card aur NFC tag, sab ek jagah.</p>
     </div>
   </header>
 
   <main class="wrap grid">
     <section class="panel no-print" aria-label="Settings">
-      <h2>1. Details bharo</h2>
+      <h2><b class="n">1</b> Details bharo</h2>
 
       <label for="name">Business ka naam</label>
       <input id="name" type="text" value="Aapka Business" maxlength="40" />
@@ -41,7 +41,7 @@
         </div>
       </div>
 
-      <h2>2. Download / Print</h2>
+      <h2><b class="n">2</b> Download / Print</h2>
       <div class="btns">
         <button id="dlPng" class="btn">QR PNG</button>
         <button id="dlSvg" class="btn">QR SVG</button>
@@ -49,7 +49,7 @@
       </div>
       <p class="hint">Print dialog me <b>Save as PDF</b> chuno, aur print shop ko wahi PDF do. Scale <b>100%</b> rakho, tabhi card ka size sahi aayega (85.6 × 54 mm).</p>
 
-      <h2>3. NFC tag me link likho</h2>
+      <h2><b class="n">3</b> NFC tag me link likho</h2>
       <button id="nfc" class="btn">NFC tag me likho</button>
       <p id="nfcMsg" class="msg" role="status"></p>
       <p class="hint">Sirf <b>Chrome (Android)</b> me chalta hai, NFC ON ho. iPhone ya computer par <b>NFC Tools</b> app use karo (README dekho).</p>
@@ -62,13 +62,16 @@
         <div>
           <p class="cap no-print">Aage ka hissa</p>
           <article class="card front" id="front">
-            <div class="stars" aria-hidden="true">★ ★ ★ ★ ★</div>
-            <h3 id="pName">Aapka Business</h3>
-            <p id="pLine">Hamari service pasand aayi? Review dijiye!</p>
-            <div class="tap">
-              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 8.5a6.5 6.5 0 0 1 0 7"/><path d="M10 6a10 10 0 0 1 0 12"/><path d="M14 3.5a13.5 13.5 0 0 1 0 17"/></svg>
-              <span>Phone yahan tap karo</span>
+            <i class="orb o1" aria-hidden="true"></i><i class="orb o2" aria-hidden="true"></i>
+            <div class="f-top">
+              <div class="stars" aria-hidden="true">★★★★★</div>
+              <svg class="nfc-ico" viewBox="0 0 48 48" width="34" height="34" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" aria-hidden="true"><path d="M17 15a13 13 0 0 1 0 18"/><path d="M24 10a21 21 0 0 1 0 28"/><path d="M31 5a29 29 0 0 1 0 38"/></svg>
             </div>
+            <div class="f-mid">
+              <h3 id="pName">Aapka Business</h3>
+              <p id="pLine">Hamari service pasand aayi? Review dijiye!</p>
+            </div>
+            <div class="tap"><span class="dot"></span>Phone yahan tap karo</div>
           </article>
         </div>
 
